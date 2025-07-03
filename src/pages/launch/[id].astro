@@ -1,0 +1,25 @@
+---
+import Layout from "../../layouts/Layout.astro"
+import { getLaunchByID } from "../../services/spacex"
+
+
+
+const {id} = Astro.params
+let launch
+if (id) {
+    launch= await getLaunchByID({id})
+}
+// export function getStaticPaths(){
+//     // llamar a un api externa para saber todas la ids que debes saber 
+//     return [{ params: {id : "5eb87cd9ffd86e000604b32a"}}]
+// }
+console.log(launch)
+---
+<Layout>
+    <article>
+      <img src={launch?.links?.patch.small} alt={launch?.name}>
+      <h2 class="text-4xl text-white font-bold" > Launch#{launch?.flight_number}</h2>
+        {launch?.id}
+        <p class="text-lg"> {launch?.details}</p>
+    </article>
+</Layout>
