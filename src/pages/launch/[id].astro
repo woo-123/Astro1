@@ -1,8 +1,10 @@
 ---
 import Layout from "../../layouts/Layout.astro"
 import { getLaunchByID } from "../../services/spacex"
+import "../../styles/global.css";
 
-
+export const prerender = false //server
+//cokies
 
 const {id} = Astro.params
 let launch
@@ -18,8 +20,9 @@ console.log(launch)
 <Layout>
     <article>
       <img src={launch?.links?.patch.small} alt={launch?.name}>
-      <h2 class="text-4xl text-white font-bold" > Launch#{launch?.flight_number}</h2>
-        {launch?.id}
-        <p class="text-lg"> {launch?.details}</p>
+      <h2 class="text-4xl text-white font-bold" > Launch#{launch?.flight_number}
+          {launch?.id}
+      </h2>
+        <p class="text-lg text-white"> {launch?.details}</p>
     </article>
 </Layout>
